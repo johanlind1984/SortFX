@@ -21,6 +21,7 @@
          <children>
             <VBox alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="1280.0" style="-fx-background-image: ../images/barchart.jpg">
                <children>
+                  <Slider fx:id="sliderHistory" orientation="HORIZONTAL" prefHeight="14.0" prefWidth="510.0" blockIncrement="1.0"  majorTickUnit="1.0" minorTickCount="0" min="1.0" showTickLabels="true" snapToTicks="true" valueChanging="true"/>
                   <ImageView fitHeight="50.0" fitWidth="1280.0">
                      <image>
                         <Image url="@images/barchart.jpg" />
@@ -37,7 +38,7 @@
             <VBox prefHeight="36.0" prefWidth="100.0" />
             <VBox alignment="BOTTOM_CENTER" prefHeight="657.0" prefWidth="100.0">
                <children>
-                  <Slider fx:id="sliderHistory" visible="false" orientation="VERTICAL" prefHeight="511.0" prefWidth="14.0" blockIncrement="1.0"  majorTickUnit="1.0" minorTickCount="0" min="1.0" showTickLabels="true" snapToTicks="true" onMouseDragReleased="#moveHistory"/>
+
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">

@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,12 +12,9 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.VBox;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Controller {
     private int arraySize;
@@ -52,7 +51,7 @@ public class Controller {
 
         minValue = 0;
         maxValue = 500;
-        arraySize = 250;
+        arraySize = 75;
         sliderSpeed.setValue(50.0);
         speed = (102 - sliderSpeed.getValue())*5;
         xAxis = new CategoryAxis();
@@ -64,10 +63,22 @@ public class Controller {
         arrayDiagram.setCategoryGap(0);
         arrayDiagram.setAnimated(false);
         sliderHistory.setMax(swapsStored.size());
-        updateChart();
+        addListerners();
+        updateUI();
+
     }
 
-    public void updateChart(){
+    public void addListerners(){
+        sliderHistory.valueProperty().addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+                observeSwapHistory();
+            }
+        });
+    }
+
+    public void updateUI(){
         // Updates the UI: copies array into BarChart, checks slider to adjust speed and sets the sliderHistory max value to the number of
         // values held in swapsStored if value does not exceed 2000 (2000 is max for sliders).
 
@@ -104,7 +115,15 @@ public class Controller {
 
     private void addToHistory() {
         // stores the action made (swap) in a arraylist so that the user can step through the swaphistory later.
-        History tempHistory = new History(arrayToSort);
+        int[] tempArray = new int[arrayToSort.length];
+
+        for (int i=0; i < arrayToSort.length; i++) {
+            int tempValue = arrayToSort[i];
+            tempArray[i] = tempValue;
+
+        }
+
+        History tempHistory = new History(tempArray);
         swapsStored.add(tempHistory);
     }
 
@@ -120,19 +139,9 @@ public class Controller {
     }
 
     @FXML
-    private void moveHistory() {
-        // Not finished
-        // After a sort the user can check each step in the sortingalgorithm with the slider. Slider is hidden at the
-        // moment since i haven't got this working yet.
-
+    private void observeSwapHistory() {
         arrayToSort = swapsStored.get(((int) sliderHistory.getValue())).getHistoryOfSwap();
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                updateChart();
-            }
-        });
-
+        updateUI();
     }
 
     public void bubbleSort(ActionEvent actionEvent) throws IOException, InterruptedException {
@@ -149,7 +158,7 @@ public class Controller {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    updateChart();
+                    updateUI();
                 }
             });
         }
@@ -157,7 +166,7 @@ public class Controller {
     }
 
     public void inserstionSort(ActionEvent actionEvent) {
-        // Starts insertionsorting in a new thread. Updates UI via GUI thread and runLater.
+        // Starts insertionsorting in a new thread. Calls Updates UI via GUI thread and runLater.
         new Thread(() -> {
             while (!sorted(arrayToSort)) {
                 try {
@@ -170,7 +179,7 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        updateChart();
+                        updateUI();
                     }
                 });
             }
@@ -191,7 +200,7 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        updateChart();
+                        updateUI();
                     }
                 });
             }
@@ -214,7 +223,7 @@ public class Controller {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        updateChart();
+                        updateUI();
                     }
                 });
             }
@@ -224,7 +233,7 @@ public class Controller {
     public void generateArray(ActionEvent actionEvent) {
         arrayToSort = ArrayFunctions.createArray(minValue, maxValue, arraySize);
         swapsStored = new ArrayList<>();
-        updateChart();
+        updateUI();
 
     }
 }

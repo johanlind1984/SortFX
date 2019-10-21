@@ -10,6 +10,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -24,7 +25,6 @@ public class Controller {
     private NumberAxis yAxis;
     private ArrayList<History> swapsStored;
     private static int[] arrayToSort;
-
 
     @FXML
     Slider sliderSpeed;
@@ -47,7 +47,7 @@ public class Controller {
     private void initialize() {
         minValue = 0;
         maxValue = 500;
-        arraySize = 100;
+        arraySize = 250;
         sliderSpeed.setValue(50.0);
         speed = (102 - sliderSpeed.getValue())*5;
         xAxis = new CategoryAxis();

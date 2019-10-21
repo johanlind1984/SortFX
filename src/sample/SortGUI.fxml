@@ -17,9 +17,9 @@
 <?import javafx.scene.image.Image?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="BOTTOM_CENTER">
          <children>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="1280.0" style="-fx-background-image: ../images/barchart.jpg">
+            <VBox alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="1280.0" style="-fx-background-image: ../images/barchart.jpg">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="1280.0">
                      <image>

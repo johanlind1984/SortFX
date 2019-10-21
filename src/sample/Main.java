@@ -13,6 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("SortGUI.fxml"));
         primaryStage.setTitle("SortFX");
         primaryStage.setScene(new Scene(root, 1280, 768));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

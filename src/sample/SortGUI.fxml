@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="1542.0" style="-fx-background-image: ../images/barchart.jpg" />
+         </children>
+      </HBox>
+   </bottom>
+   <left>
+      <VBox prefHeight="563.0" prefWidth="100.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="36.0" prefWidth="100.0" />
+            <VBox alignment="BOTTOM_CENTER" prefHeight="657.0" prefWidth="100.0">
+               <children>
+                  <Slider fx:id="sliderHistory" visible="false" orientation="VERTICAL" prefHeight="511.0" prefWidth="14.0" blockIncrement="1.0"  majorTickUnit="1.0" minorTickCount="0" min="1.0" showTickLabels="true" snapToTicks="true" onMouseDragReleased="#moveHistory"/>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
+               <children>
+                  <Label text="Back/Forth" visible="false" textFill="#010203">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   <right>
+      <VBox alignment="CENTER" prefHeight="599.0" prefWidth="101.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="44.0" prefWidth="101.0" />
+            <Slider fx:id="sliderSpeed" blockIncrement="1.0" majorTickUnit="1.0" min="1.0" max="100.0" minorTickCount="0" orientation="VERTICAL" prefHeight="523.0" prefWidth="14.0" showTickLabels="true" snapToTicks="true" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Speed">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+   </right>
+   <center>
+      <BarChart fx:id="arrayDiagram" barGap="1.0" categoryGap="100.0" horizontalGridLinesVisible="false" legendSide="TOP" style="-fx-background-color: white; -fx-border-color: white;" title="Array Values" BorderPane.alignment="CENTER">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </center>
+   <top>
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="1014.0" spacing="10.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="buttonGenerateArray" mnemonicParsing="false" onAction="#generateArray" text="Generate New Array" />
+            <Button fx:id="buttonBubbleSort" mnemonicParsing="false" onAction="#bubbleSort" text="BubbleSort" textAlignment="CENTER" />
+            <Button fx:id="buttonInserstionSort" mnemonicParsing="false" onAction="#inserstionSort" text="InserstionSort" />
+            <Button fx:id="buttonSelectionSort" mnemonicParsing="false" onAction="#selectionSort" text="SelectionSort" />
+            <Button fx:id="buttonMergeSort" mnemonicParsing="false" onAction="#mergeSort" text="MergeSort" visible="false"/>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
